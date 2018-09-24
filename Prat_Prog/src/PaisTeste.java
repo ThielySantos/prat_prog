@@ -1,8 +1,11 @@
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PaisTeste {
 
 	Pais pais, copia;
@@ -11,8 +14,8 @@ public class PaisTeste {
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("setup");
-		pais = new Pais(id, "Alemanha,357.386,82.67" );
-		copia = new Pais(id, "Alemanha,357.386,82.67" );
+		pais = new Pais(id, "Alemanha",357386,82.67 );
+		copia = new Pais(id, "Alemanha",357386,82.67);
 		System.out.println(pais);
 		System.out.println(copia);
 		System.out.println(id);
@@ -21,8 +24,8 @@ public class PaisTeste {
 	@Test
 	public void test00Carregar() {
 		System.out.println("carregar");
-		Pais fixture = new Pais("Suiça,41.285,8.37" );
-		Pais novo = new Pais(null, null, null);
+		Pais fixture = new Pais(1,"Dinamarca",5731000,42.92 );
+		Pais novo = new Pais(1,null, 0, 0);
 		novo.carregar();
 		assertEquals("testa inclusao", novo, fixture);
 	}
@@ -40,8 +43,8 @@ public class PaisTeste {
 	@Test
 	public void test02Atualizar() {
 		System.out.println("atualizar");
-		pais.setPopulacao("82.67");
-		copia.setPopulacao("82.67");		
+		pais.setPopulacao(8267);
+		copia.setPopulacao(8267);		
 		pais.atualizar();
 		pais.carregar();
 		assertEquals("testa atualizacao", pais, copia);
@@ -52,13 +55,10 @@ public class PaisTeste {
 		System.out.println("excluir");
 		copia.setId(-1);
 		copia.setNome(null);
-		copia.setPopulacao(populacao);
-		copia.setArea(area);
+		copia.setPopulacao(0);
+		copia.setArea(0);
 		pais.excluir();
 		pais.carregar();
 		assertEquals("testa exclusao", pais, copia);
 	}
 }
-
-
-

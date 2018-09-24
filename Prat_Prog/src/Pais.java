@@ -30,7 +30,7 @@ public Pais(){
 	}
 
 	public void criar() {
-		String sqlInsert = "INSERT INTO cliente(nome, populacao, area) VALUES (?, ?, ?)";
+		String sqlInsert = "INSERT INTO pais(nome, populacao, area) VALUES (?, ?, ?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
@@ -80,7 +80,7 @@ public Pais(){
 	}
 
 	public void carregar() {
-		String sqlSelect = "SELECT nome, populacao, area FROM cliente WHERE pais.id = ?";
+		String sqlSelect = "SELECT nome, populacao, area FROM pais WHERE pais.id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -211,7 +211,32 @@ public Pais(){
 		
 	}
 	
-
-
-
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pais other = (Pais) obj;
+		if (populacao == 0) {
+			if (other.populacao != 0)
+				return false;
+		} else if (!(populacao == other.populacao))
+			return false;
+		if (area == 0) {
+			if (other.area != 0)
+				return false;
+		} else if (!(area == other.area))
+			return false;
+		if (id != other.id)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
 }
