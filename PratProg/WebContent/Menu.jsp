@@ -13,7 +13,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="listar_pais.do?acao=reiniciar">Pais</a>
+                    <li><a href="Controller.do?command=ListarPaisReiniciar">Pais</a>
                     </li>
                 </ul>
             </div>
